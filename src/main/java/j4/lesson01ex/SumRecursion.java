@@ -4,38 +4,29 @@ import javax.swing.*;
 
 public class SumRecursion {
     public static void main(String[] args) {
-        String inputText = JOptionPane.showInputDialog("整数を入力してください。");
+        String inputText = JOptionPane.showInputDialog("10 以上の整数を入力してください。");
         int inputNumber = Integer.parseInt(inputText);
 
         int total = 0;
         String resultMessage = "";
-        boolean isAbbreviate = false;
-        boolean isFirst = true;
+
+        if (inputNumber <= 9) {
+            JOptionPane.showMessageDialog(null, "10 以上の整数ではないので終了します。");
+            return;
+        }
 
         if (inputNumber % 2 == 0) {
-            int abbrNumber = 4;
-            for (int i = 2; ; i += 2) {
-                if (i > inputNumber) break;
-                if (!isFirst && i <= abbrNumber) resultMessage += " + ";
-
+            for (int i = 2; i <= inputNumber; i += 2) {
                 total += i;
-                if (i <= abbrNumber) resultMessage += i;
-                else isAbbreviate = true;
-                isFirst = false;
+                if (i <= 4) resultMessage += i + " + ";
             }
         } else {
-            int abbrNumber = 3;
-            for (int i = 1; ; i += 2) {
-                if (i > inputNumber) break;
-                if (!isFirst && i <= abbrNumber) resultMessage += " + ";
-
+            for (int i = 1; i <= inputNumber; i += 2) {
                 total += i;
-                if (i <= abbrNumber) resultMessage += i;
-                else isAbbreviate = true;
-                isFirst = false;
+                if (i <= 3) resultMessage += i + " + ";
             }
         }
-        if (isAbbreviate) resultMessage += " + ... + " + inputText;
+        resultMessage += "... + " + inputText;
         resultMessage += " = " + total;
 
         JOptionPane.showMessageDialog(null, resultMessage);
