@@ -21,17 +21,19 @@ public class SortIntegerArray {
 
         int[] nums = new int[inputArraySplit.length];
         int[] numsBk = new int[inputArraySplit.length];
+
         int i = 0;
         for (String inputNum : inputArraySplit) {
-            nums[i] = Integer.parseInt(inputNum);
-            numsBk[i++] = Integer.parseInt(inputNum);
+            int num = Integer.parseInt(inputNum);
+            nums[i] = num;
+            numsBk[i++] = num;
         }
 
         SortIntegerArray sortIntegerArray = new SortIntegerArray();
         sortIntegerArray.sort(nums);
 
         String outputString = "Original Integers: ";
-        outputString += nums[0];
+        outputString += numsBk[0];
         for (int j = 1; j < numsBk.length; j++) {
             outputString += ":" + numsBk[j];
         }
