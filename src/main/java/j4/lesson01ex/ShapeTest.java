@@ -72,9 +72,14 @@ class Cuboid implements Shape {
 
 public class ShapeTest {
     public static void main(String[] args) {
+        // コンソールで入力を受け取るためのもの
         Scanner scanner = new Scanner(System.in);
+
+        // 入力フェーズ
         System.out.println("Shape Creation\nCircle -- 1, Rectangle -- 2, Cuboid -- 3: ");
         int choice = scanner.nextInt();
+
+        // 入力された値に応じて図形を生成し、面積を求める
         switch (choice) {
             case 1:
                 System.out.println("Create Circle:");
