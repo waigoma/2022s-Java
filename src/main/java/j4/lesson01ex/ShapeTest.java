@@ -76,19 +76,12 @@ public class ShapeTest {
         Scanner scanner = new Scanner(System.in);
 
         // 入力フェーズ
-        System.out.println("Shape Creation\nCircle -- 1, Rectangle -- 2, Cuboid -- 3: ");
+        System.out.println("Shape Creation\nRectangle -- 1, Circle -- 2, Cuboid -- 3: ");
         int choice = scanner.nextInt();
 
         // 入力された値に応じて図形を生成し、面積を求める
         switch (choice) {
             case 1:
-                System.out.println("Create Circle:");
-                System.out.println("Enter radius: ");
-                float radius = scanner.nextFloat();
-                Circle circle = new Circle(radius);
-                System.out.println(circle);
-                break;
-            case 2:
                 System.out.println("Create Rectangle:");
                 System.out.println("Enter width: ");
                 float width = scanner.nextFloat();
@@ -96,6 +89,13 @@ public class ShapeTest {
                 float height = scanner.nextFloat();
                 Rectangle rectangle = new Rectangle(width, height);
                 System.out.println(rectangle);
+                break;
+            case 2:
+                System.out.println("Create Circle:");
+                System.out.println("Enter radius: ");
+                float radius = scanner.nextFloat();
+                Circle circle = new Circle(radius);
+                System.out.println(circle);
                 break;
             case 3:
                 System.out.println("Create Cuboid:");
