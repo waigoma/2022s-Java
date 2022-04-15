@@ -27,13 +27,11 @@ public class PhoneCallPanel extends JFrame {
         button0.setFont(font);
         frame.add(button0);
 
-        // src/main/resources/
         ImageIcon callIcon = new ImageIcon("img/phoneCall.png");
         Image callIconScale = callIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         JButton call = new JButton(new ImageIcon(callIconScale));
         frame.add(call);
 
-        // src/main/resources/
         ImageIcon hangupIcon = new ImageIcon("img/phoneHangUp.png");
         Image hangUpIconScale = hangupIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         JButton hangup = new JButton(new ImageIcon(hangUpIconScale));
