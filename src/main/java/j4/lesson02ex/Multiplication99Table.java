@@ -14,11 +14,11 @@ public class Multiplication99Table extends JFrame {
 
     public static void main(String[] args) {
         Multiplication99Table frame = new Multiplication99Table("Multiplication99Table", 200, 200, 400, 400);
-        frame.setLayout(new GridLayout(9, 9, 5, 5));
+        frame.setLayout(new GridLayout(9, 9));
 
         for (int i = 1; i <= 9; i++) {
             for (int j = 1; j <= 9; j++) {
-                JLabel label = new JLabel(i * j + "");
+                JLabel label = new JLabel(i * j + "", SwingConstants.CENTER);
                 label.setFont(new Font("Times New Roman", Font.BOLD, 24));
                 frame.add(label);
             }
