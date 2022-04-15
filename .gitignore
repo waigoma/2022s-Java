@@ -11,3 +11,4 @@
 .idea/
 out/
 target/
+src/**/img/
