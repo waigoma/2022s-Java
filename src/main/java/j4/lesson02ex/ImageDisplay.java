@@ -50,17 +50,21 @@ public class ImageDisplay extends JFrame {
                 System.exit(0);
         }
 
-        for (int i = 0; i < images.size() - inputValue; i++) {
-            ImageIcon tmp = images.get(i);
-            images.remove(i);
-            images.add(tmp);
+        ArrayList<ImageIcon> newImages = new ArrayList<>();
+
+        for (int i = inputValue; i < images.size(); i++) {
+            newImages.add(images.get(i));
         }
 
-        frame.add(new JLabel(images.get(0)), BorderLayout.CENTER);
-        frame.add(new JLabel(images.get(1)), BorderLayout.EAST);
-        frame.add(new JLabel(images.get(2)), BorderLayout.SOUTH);
-        frame.add(new JLabel(images.get(3)), BorderLayout.WEST);
-        frame.add(new JLabel(images.get(4)), BorderLayout.NORTH);
+        for (int i = 0; i < inputValue; i++) {
+            newImages.add(images.get(i));
+        }
+
+        frame.add(new JLabel(newImages.get(0)), BorderLayout.CENTER);
+        frame.add(new JLabel(newImages.get(1)), BorderLayout.EAST);
+        frame.add(new JLabel(newImages.get(2)), BorderLayout.SOUTH);
+        frame.add(new JLabel(newImages.get(3)), BorderLayout.WEST);
+        frame.add(new JLabel(newImages.get(4)), BorderLayout.NORTH);
 
         frame.setVisible(true);
     }
