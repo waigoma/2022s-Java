@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class RandomNumGenerator extends JPanel implements ActionListener{
+public class RandomNumGenerator extends JPanel implements ActionListener {
     public static void main(String[] args){
         JFrame frame = new JFrame();
 
@@ -42,6 +42,7 @@ public class RandomNumGenerator extends JPanel implements ActionListener{
         frame.setVisible(true);
     }
 
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(Color.blue);
@@ -52,6 +53,7 @@ public class RandomNumGenerator extends JPanel implements ActionListener{
         g.drawString("Display 1000 random numbers in the 300x300 rectangle", 100, 400);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e){
         repaint();
     }
