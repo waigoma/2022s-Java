@@ -13,3 +13,4 @@ out/
 target/
 img/
 src/**/img/
+src/**/test/
