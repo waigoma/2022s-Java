@@ -104,8 +104,8 @@ public class PhoneCallPanelEvt extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setTitle("PhoneCallPanelEvt");
+        JFrame frame = new JFrame("PhoneCallPanelEvt");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(200, 200);
         frame.setSize(300, 380);
 
