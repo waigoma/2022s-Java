@@ -19,7 +19,7 @@ public class MouseDrawShape extends JFrame implements MouseListener, ActionListe
     }
 
     public MouseDrawShape() {
-        setTitle("MouseEvent2");
+        setTitle("MouseDrawShape");
         setSize(500, 500);
         getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +34,7 @@ public class MouseDrawShape extends JFrame implements MouseListener, ActionListe
         add(dSquare, "Center");
 
         JPanel btPanel = new JPanel();
+        btPanel.setBackground(Color.WHITE);
         btPanel.setLayout(new FlowLayout());
         btPanel.setPreferredSize(new Dimension(100,70));
 
