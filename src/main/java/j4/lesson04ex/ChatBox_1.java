@@ -18,8 +18,8 @@ public class ChatBox_1 extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        jtf1 = new JTextField("", 10);
-        jtf2 = new JTextField("", 10);
+        jtf1 = new JTextField("", 15);
+        jtf2 = new JTextField("", 15);
 
         jtf1.setFont(centuryFont);
         jtf1.addActionListener(this);
@@ -29,7 +29,7 @@ public class ChatBox_1 extends JFrame implements ActionListener {
         jtf2.addActionListener(this);
         jtf2.setActionCommand("B");
 
-        jta = new JTextArea("Left: A, Right: B", 10, 15);
+        jta = new JTextArea("Left: A, Right: B", 10, 20);
         jta.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         jta.setFont(centuryFont);
         jta.setEditable(false);
