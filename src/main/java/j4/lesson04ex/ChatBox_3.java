@@ -26,12 +26,16 @@ public class ChatBox_3 extends JFrame implements KeyListener, ItemListener {
         jta.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         jta.setFont(centuryPlain);
         jta.addKeyListener(this);
+        jta.setPreferredSize(new Dimension(200, 300));
+        jta.setLineWrap(true);
 
         // Display 用テキストエリア
         display = new JTextArea(10, 20);
         display.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         display.setFont(centuryPlain);
         display.setEditable(false);
+        display.setPreferredSize(new Dimension(200, 300));
+        display.setLineWrap(true);
 
         // CheckBox
         JPanel checkPanel = new JPanel();
@@ -59,12 +63,12 @@ public class ChatBox_3 extends JFrame implements KeyListener, ItemListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        display.setText(jta.getText());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        display.setText(jta.getText());
     }
 
     @Override
