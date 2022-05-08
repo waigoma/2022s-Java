@@ -11,11 +11,14 @@ import java.util.Arrays;
 
 public class ChatBox_2 extends JFrame implements ActionListener, ItemListener {
     private static final Font menuFont = new Font("Century", Font.BOLD, 14);
-    private static final Font centuryFont = new Font("Century", Font.PLAIN, 24);
+    private static final Font defaultFont = new Font("Century", Font.PLAIN, 24);
 
     private final JTextField jtf1;
     private final JTextField jtf2;
     private final JTextArea jta;
+    private final ButtonGroup colorGroup = new ButtonGroup();
+    private final ButtonGroup sizeGroup = new ButtonGroup();
+    private final boolean isInitialized;
 
     public ChatBox_2(String title) {
         setTitle(title);
@@ -39,77 +42,93 @@ public class ChatBox_2 extends JFrame implements ActionListener, ItemListener {
 
         menuBar.add(bgMenu);
 
+        // 入力した文字列を表示する
+        jta = new JTextArea("Left: A, Right: B", 10, 20);
+        jta.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        jta.setFont(defaultFont);
+        jta.setEditable(false);
+
+        JScrollPane jsp = new JScrollPane(jta);
+        jsp.setPreferredSize(new Dimension(300, 400));
+
         // A さんのテキストエリア
-        jtf1 = new JTextField("", 10);
-        jtf1.setFont(centuryFont);
+        jtf1 = new JTextField("", 15);
+        jtf1.setFont(defaultFont);
         jtf1.addActionListener(this);
         jtf1.setActionCommand("A");
 
         // B さんのテキストエリア
-        jtf2 = new JTextField("", 10);
-        jtf2.setFont(centuryFont);
+        jtf2 = new JTextField("", 15);
+        jtf2.setFont(defaultFont);
         jtf2.addActionListener(this);
         jtf2.setActionCommand("B");
 
-        // 入力した文字列を表示する
-        jta = new JTextArea("Left: A, Right: B", 10, 15);
-        jta.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
-        jta.setFont(centuryFont);
-        jta.setEditable(false);
+        // 上部配列用パネル
+        JPanel chatPanel = new JPanel();
+        chatPanel.setLayout(new BorderLayout());
 
-        JScrollPane jsp = new JScrollPane(jta);
+        chatPanel.add(jsp, BorderLayout.NORTH);
+        chatPanel.add(jtf1, BorderLayout.WEST);
+        chatPanel.add(jtf2, BorderLayout.EAST);
 
         // 文字の色変えるパネル
         JPanel colorPanel = new JPanel();
-        ButtonGroup colorGroup = new ButtonGroup();
 
         Arrays.asList(
-                new JRadioButton("Black", true),
-                new JRadioButton("Blue"),
-                new JRadioButton("Red")
-        ).forEach(button -> {
+                "Black",
+                "Blue",
+                "Red"
+        ).forEach(buttonName -> {
+            JRadioButton button = new JRadioButton(buttonName);
+            button.setActionCommand(buttonName);
             button.addItemListener(this);
+
+            if (buttonName.equals("Black")) button.setSelected(true);
+
             colorGroup.add(button);
             colorPanel.add(button);
         });
 
         // 文字の大きさを変えるパネル
         JPanel sizePanel = new JPanel();
-        ButtonGroup sizeGroup = new ButtonGroup();
 
         Arrays.asList(
-                new JRadioButton("Small", true),
-                new JRadioButton("Medium"),
-                new JRadioButton("Large")
-        ).forEach(button -> {
+                "Small",
+                "Medium",
+                "Large"
+        ).forEach(buttonName -> {
+            JRadioButton button = new JRadioButton(buttonName);
+            button.setActionCommand(buttonName);
             button.addItemListener(this);
+
+            if (buttonName.equals("Medium")) button.setSelected(true);
+
             sizeGroup.add(button);
             sizePanel.add(button);
         });
 
         // 最下部のボタン配列用パネル
-        JPanel panel = new JPanel();
+        JPanel bottomPanel = new JPanel();
 
-        panel.setLayout(new BorderLayout());
-        panel.add(colorPanel, BorderLayout.WEST);
-        panel.add(sizePanel, BorderLayout.EAST);
+        bottomPanel.setLayout(new FlowLayout());
+        bottomPanel.add(colorPanel, BorderLayout.WEST);
+        bottomPanel.add(sizePanel, BorderLayout.EAST);
 
         // フレームに追加
         setJMenuBar(menuBar);
-        add(jsp, BorderLayout.NORTH);
-        add(jtf1, BorderLayout.WEST);
-        add(jtf2, BorderLayout.EAST);
-        add(panel, BorderLayout.SOUTH);
+        add(chatPanel, BorderLayout.NORTH);
+        add(bottomPanel, BorderLayout.SOUTH);
+        isInitialized = true;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "A":
-                post(jtf1);
+                post(jtf1, "A");
                 break;
             case "B":
-                post(jtf2);
+                post(jtf2, "B");
                 break;
             case "White":
                 jta.setBackground(Color.WHITE);
@@ -125,9 +144,9 @@ public class ChatBox_2 extends JFrame implements ActionListener, ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (e.getStateChange() != ItemEvent.SELECTED) return;
+        if (e.getStateChange() != ItemEvent.SELECTED || !isInitialized) return;
 
-        switch (e.getItem().toString()) {
+        switch (colorGroup.getSelection().getActionCommand()) {
             case "Black":
                 jta.setForeground(Color.BLACK);
                 break;
@@ -137,6 +156,9 @@ public class ChatBox_2 extends JFrame implements ActionListener, ItemListener {
             case "Red":
                 jta.setForeground(Color.RED);
                 break;
+        }
+
+        switch (sizeGroup.getSelection().getActionCommand()) {
             case "Small":
                 jta.setFont(new Font("Century", Font.PLAIN, 18));
                 break;
@@ -146,14 +168,12 @@ public class ChatBox_2 extends JFrame implements ActionListener, ItemListener {
             case "Large":
                 jta.setFont(new Font("Century", Font.PLAIN, 32));
                 break;
-            default:
-                System.out.println(e.getItemSelectable());
         }
     }
 
-    private void post(JTextField jtf) {
+    private void post(JTextField jtf, String user) {
         if (jtf.getText().equals("")) return;
-        jta.append("\nA: " + jtf.getText());
+        jta.append("\n" + user + ": " + jtf.getText());
         jtf.setText("");
     }
 
