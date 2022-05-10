@@ -21,7 +21,7 @@ public class MouseDrawShapeComboBox  extends JFrame implements MouseListener, It
 
     public MouseDrawShapeComboBox() {
         setTitle("MouseDrawShapeComboBox");
-        setSize(650, 600);
+        setSize(650, 500);
         getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -36,7 +36,7 @@ public class MouseDrawShapeComboBox  extends JFrame implements MouseListener, It
         shapeBox = new JComboBox(shape);
         shapeBox.addItemListener(this);
 
-        String[] color = {"Red", "Blue", "Green", "Yellow", "Black"};
+        String[] color = {"Blue", "Red", "Green", "Yellow", "Black"};
         colorBox = new JComboBox(color);
         colorBox.addItemListener(this);
 
