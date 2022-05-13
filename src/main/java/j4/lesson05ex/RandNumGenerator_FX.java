@@ -19,7 +19,6 @@ import java.util.Random;
 
 public class RandNumGenerator_FX  extends Application {
     private Canvas canvas;
-    private Button normalButton, uniformButton;
 
     public static void main(String[] args) {
         launch(args);
@@ -47,11 +46,11 @@ public class RandNumGenerator_FX  extends Application {
         gc.strokeRect(0, 0, 450, 400);
 
         // ボタンを追加
-        normalButton = new Button("Normal Distribution");
+        Button normalButton = new Button("Normal Distribution");
         normalButton.setFont(Font.font("Century", 18));
         normalButton.setOnMouseClicked(new NormalButtonEvent());
 
-        uniformButton = new Button("Uniform Distribution");
+        Button uniformButton = new Button("Uniform Distribution");
         uniformButton.setFont(Font.font("Century", 18));
         uniformButton.setOnMouseClicked(new UniformButtonEvent());
 
