@@ -85,7 +85,7 @@ public class UserInfoListandTable_FX extends Application {
         launch(args);
     }
 
-    private static class RowData {
+    public static class RowData {
         private final SimpleStringProperty name;
         private final SimpleStringProperty id;
         private final SimpleStringProperty gender;
