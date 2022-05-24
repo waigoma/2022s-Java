@@ -44,6 +44,7 @@ public class RandNumMenu_FX extends Application {
             opItem.setOnAction(new OperationEventListener());
             generation.getItems().add(opItem);
         });
+        exit.setOnAction(new OperationEventListener());
         operation.getItems().addAll(generation, exit);
 
         Menu function = new Menu("Function");
