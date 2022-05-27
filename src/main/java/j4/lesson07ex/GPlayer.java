@@ -1,41 +1,54 @@
 package j4.lesson07ex;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GPlayer implements ActionListener {
+	public static final ImageIcon ROCK = new ImageIcon("imgGame/GameRock.png");
+	public static final ImageIcon SCISSORS = new ImageIcon("imgGame/GameScissor.png");
+	public static final ImageIcon PAPER = new ImageIcon("imgGame/GamePaper.png");
+
 	public static void createButton(JPanel footerPanel) {
+		System.out.println(ROCK);
 		//ボタンを表示
 		JButton btnGu = new JButton("グー");
-		btnGu = setButton(btnGu);
+		setButton(btnGu);
+		btnGu.setIcon(createScaledImageIcon(ROCK, 50));
 		footerPanel.add(btnGu, BorderLayout.WEST);
 
 		JButton btnChoki = new JButton("チョキ");
-		btnChoki = setButton(btnChoki);
+		setButton(btnChoki);
+		btnChoki.setIcon(createScaledImageIcon(SCISSORS, 50));
 		footerPanel.add(btnChoki, BorderLayout.CENTER);
 
 		JButton btnPa = new JButton("パー");
-		btnPa = setButton(btnPa);
+		setButton(btnPa);
+		btnPa.setIcon(createScaledImageIcon(PAPER, 50));
 		footerPanel.add(btnPa, BorderLayout.EAST);
 	}
+
+	private static ImageIcon createScaledImageIcon(ImageIcon icon, int height) {
+		Image iconScale = icon.getImage().getScaledInstance(-1, height, Image.SCALE_SMOOTH);
+		return new ImageIcon(iconScale);
+	}
+
 	public static JButton setButton(JButton button) {
 		int buttonSizeX = (640 - 20)/3;
 		Dimension buttonDimesion = new Dimension(buttonSizeX, 50);
 		button.setPreferredSize(buttonDimesion);
 		Font buttonFont = new Font("ＭＳ ゴシック",Font.PLAIN,24);
 		button.setFont(buttonFont);
+		button.setBackground(Color.CYAN);
 
 		GPlayer player = new GPlayer();
 		button.addActionListener(player);
 
 		return(button);
 	}
+
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		int playerHand = 0;

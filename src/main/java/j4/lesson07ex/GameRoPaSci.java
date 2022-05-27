@@ -6,7 +6,7 @@ public class GameRoPaSci {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//ウィンドウ設定
-		JFrame frame = new JFrame("じゃんけんゲーム");
+		JFrame frame = new JFrame("じゃんけんゲーム/Rock-Paper-Scissors Game");
 		frame.setSize(640, 480);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
