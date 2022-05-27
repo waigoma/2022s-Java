@@ -1,4 +1,4 @@
-package j4.lesson06ex;
+package j4.lesson07ex;
 
 public class Register_FX {
 }
