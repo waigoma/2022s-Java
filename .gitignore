@@ -14,3 +14,6 @@ target/
 img/
 src/**/img/
 src/**/test/
+
+*.png
+*.jpg
