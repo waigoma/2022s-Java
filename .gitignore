@@ -12,7 +12,9 @@
 out/
 target/
 img/
+imgGame/
 src/**/img/
+src/**/imgGame/
 src/**/test/
 
 *.png
