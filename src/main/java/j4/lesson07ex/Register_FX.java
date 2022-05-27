@@ -57,7 +57,7 @@ public class Register_FX extends Application {
 
         TextArea textArea = new TextArea();
         textArea.setPrefSize(220, 100);
-        HBox textAreaBox = createLabelField("Biography: ", textArea);
+        HBox textAreaBox = createLabelField("Biography: ", false, textArea);
 
         Button confirmButton = new Button("Confirm");
         Button clearButton = new Button("Clear");
@@ -71,11 +71,12 @@ public class Register_FX extends Application {
         Label rightTopLabel = new Label("Registration Result");
         rightTopLabel.setFont(Font.font("Century", FontWeight.BOLD, 24));
 
+        // 上のラベル
         Label topLabel = new Label("Register & Display");
         topLabel.setFont(Font.font("Century", FontWeight.BOLD, 32));
-        HBox hbox = new HBox();
-        hbox.setAlignment(Pos.CENTER);
-        hbox.getChildren().add(topLabel);
+        HBox hbox = createLabelField("", topLabel);
+
+        // 最後のレイアウト
         root.setTop(hbox);
         root.setLeft(vbox);
         root.setCenter(vbox2);
@@ -90,17 +91,23 @@ public class Register_FX extends Application {
             cb.getItems().add(i);
     }
 
-    private HBox createLabelField(String labelText, Node... element) {
+    private HBox createLabelField(String labelText, boolean isSetSize, Node... nodes) {
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
+        if (isSetSize) hbox.setPrefWidth(220);
+//        hbox.setMaxSize(1000, 1000);
         Label label = new Label(labelText);
-        label.setFont(Font.font("Century", FontWeight.BOLD, 18));
+        label.setFont(Font.font("Century", 12));
         hbox.getChildren().addAll(label);
 
-        for (Node node : element)
+        for (Node node : nodes)
             hbox.getChildren().add(node);
 
         return hbox;
+    }
+
+    private HBox createLabelField(String labelText, Node... nodes) {
+        return createLabelField(labelText, true, nodes);
     }
 
     public static void main(String[] args) {
