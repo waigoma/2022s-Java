@@ -27,32 +27,21 @@ public class Register_FX extends Application {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 650, 400);
 
-        // 左側 vbox
-        VBox leftVBox = leftVBox();
-
-        // 右側 vbox
-        VBox vbox2 = new VBox();
-        vbox2.setAlignment(Pos.CENTER);
-        Label rightTopLabel = new Label("Registration Result");
-        rightTopLabel.setFont(Font.font("Century", FontWeight.BOLD, 18));
-
-        TextArea textArea = new TextArea();
-        textArea.setPrefSize(220d, 290d);
-        textArea.setEditable(false);
-
-        vbox2.getChildren().addAll(rightTopLabel, textArea);
-        vbox2.setPadding(new Insets(0, 15, 15, 10));
-        vbox2.setSpacing(10);
-
         // 上のラベル
         Label topLabel = new Label("Register & Display");
         topLabel.setFont(Font.font("Century", FontWeight.BOLD, 32));
         HBox hbox = createLabelField("", topLabel);
 
+        // 左側 vbox
+        VBox leftVBox = leftVBox();
+
+        // 右側 vbox
+        VBox rightBox = rightBox();
+
         // 最後のレイアウト
         root.setTop(hbox);
         root.setLeft(leftVBox);
-        root.setCenter(vbox2);
+        root.setCenter(rightBox);
 
         stage.setScene(scene);
         stage.setTitle("Register_FXOption");
@@ -114,6 +103,23 @@ public class Register_FX extends Application {
         vbox.getChildren().addAll(label, name, password, confirm, email, gender, birthday, hobby, textAreaBox, buttonBox);
         vbox.setSpacing(5);
         vbox.setAlignment(Pos.CENTER);
+
+        return vbox;
+    }
+
+    private VBox rightBox() {
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        Label rightTopLabel = new Label("Registration Result");
+        rightTopLabel.setFont(Font.font("Century", FontWeight.BOLD, 18));
+
+        TextArea textArea = new TextArea();
+        textArea.setPrefSize(220d, 290d);
+        textArea.setEditable(false);
+
+        vbox.getChildren().addAll(rightTopLabel, textArea);
+        vbox.setPadding(new Insets(0, 15, 15, 10));
+        vbox.setSpacing(10);
 
         return vbox;
     }
