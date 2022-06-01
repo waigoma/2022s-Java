@@ -205,7 +205,7 @@ public class RegisterConfirm_FX extends Application {
 
     // メールアドレスの形式かどうか
     private boolean isCorrectMail(String str) {
-        Pattern p = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+        Pattern p = Pattern.compile("^\\w+((-\\w+)|(\\.\\w+))*\\@[AZa-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$");
         return p.matcher(str).matches();
     }
 
@@ -243,7 +243,7 @@ public class RegisterConfirm_FX extends Application {
             String name = "Name: " + nameField.getText();
             String email = "Email: " + emailField.getText();
             RadioButton gen = (RadioButton) genderGroup.getSelectedToggle();
-            String gender = "Gender: " + gen.getText();
+            String gender = "Gender: " + (gen != null ? gen.getText() : "");
             String birthday = "Birthday: " + yearComboBox.getValue() + "." + monthComboBox.getValue() + "." + dayComboBox.getValue();
             String hobby = "Hobby: " + (sports.isSelected() ? "Sports " : "") + (music.isSelected() ? "Music " : "") + (game.isSelected() ? "Game " : "");
 
