@@ -34,7 +34,7 @@ public class GPlayer implements ActionListener {
 		return new ImageIcon(iconScale);
 	}
 
-	public static JButton setButton(JButton button) {
+	public static void setButton(JButton button) {
 		int buttonSizeX = (640 - 20)/3;
 		Dimension buttonDimesion = new Dimension(buttonSizeX, 50);
 		button.setPreferredSize(buttonDimesion);
@@ -45,15 +45,22 @@ public class GPlayer implements ActionListener {
 		GPlayer player = new GPlayer();
 		button.addActionListener(player);
 
-		return(button);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		int playerHand = 0;
-		if (command.equals("グー")) playerHand = 1;
-		else if (command.equals("チョキ")) playerHand = 2;
-		else if (command.equals("パー"))  playerHand = 3;
+		switch (command) {
+			case "グー":
+				playerHand = 1;
+				break;
+			case "チョキ":
+				playerHand = 2;
+				break;
+			case "パー":
+				playerHand = 3;
+				break;
+		}
 
 		int computerHand = GComputer.decidesComputerHand();
 		GVictoryOrDefeat.decisionVictoryOrDefeat(computerHand, playerHand);
