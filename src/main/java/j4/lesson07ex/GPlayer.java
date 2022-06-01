@@ -12,7 +12,6 @@ public class GPlayer implements ActionListener {
 	public static final ImageIcon PAPER = new ImageIcon("imgGame/GamePaper.png");
 
 	public static void createButton(JPanel footerPanel) {
-		System.out.println(ROCK);
 		//ボタンを表示
 		JButton btnGu = new JButton("グー");
 		setButton(btnGu);
