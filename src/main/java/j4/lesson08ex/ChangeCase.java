@@ -14,6 +14,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChangeCase extends Application {
     private Label lb;
@@ -91,7 +93,7 @@ public class ChangeCase extends Application {
             } else if (e.getSource() == bt2) {
                 try {
                     File flw = fc.showSaveDialog(new Stage());
-                    if(flw != null){
+                    if (flw != null) {
                         lb.setText(" Save File");
                         tf.setText(flw.getName());
                         BufferedWriter bw = new BufferedWriter(new FileWriter(flw));
@@ -103,20 +105,16 @@ public class ChangeCase extends Application {
                     ex.printStackTrace();
                 }
             } else if (e.getSource() == bt3) {
-                try {
-                    ta.clear();
-                    bt3.setText(changedToCapital ? "Uppercase" : "Lowercase");
-                    File flr = fc.showOpenDialog(new Stage());
-                    if(flr != null){
-                        lb.setText(" Delete File");
-                        tf.setText(flr.getName());
-                        flr.delete();
-                        ta.appendText(flr.getName() + " has been deleted.");
-
-                    }
-                } catch(Exception ex) {
-                    ex.printStackTrace();
-                }
+//                ta.clear();
+                bt3.setText(changedToCapital ? "Uppercase" : "Lowercase");
+                changedToCapital = !changedToCapital;
+                Pattern pt = Pattern.compile("\\w+");
+                Matcher mt = pt.matcher(ta.getText());
+                int count = 0;
+                while (mt.find()) count++;
+                System.out.println(ta.getText());
+                System.out.println(mt.replaceAll(changedToCapital ? "$0" : "$0".toLowerCase()));
+                System.out.println(count);
             }
         }
     }
