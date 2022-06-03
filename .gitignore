@@ -13,9 +13,11 @@ out/
 target/
 img/
 imgGame/
+MyfileEx/
 src/**/img/
 src/**/imgGame/
 src/**/test/
+src/**/MyfileEx/
 
 *.png
 *.jpg
