@@ -117,7 +117,6 @@ public class ChangeCase extends Application {
                 StringBuffer sb = new StringBuffer();
                 while (mt.find()) {
                     String match = mt.group();
-                    System.out.println(count + ": " + match);
                     char first = changedToCapital ? match.toUpperCase().charAt(0) : match.toLowerCase().charAt(0);
                     if (first != match.charAt(0)) changedCount++;
                     String rest = match.substring(1);
