@@ -25,6 +25,8 @@ public class ChangeCase extends Application {
 
     private boolean changedToCapital = false;
 
+    private String defaultMessage = "";
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -86,6 +88,7 @@ public class ChangeCase extends Application {
                         while((str = br.readLine()) != null)
                             ta.appendText(str+ "\n");
                         br.close();
+                        defaultMessage = ta.getText();
                     }
                 } catch(Exception ex) {
                     ex.printStackTrace();
@@ -105,16 +108,25 @@ public class ChangeCase extends Application {
                     ex.printStackTrace();
                 }
             } else if (e.getSource() == bt3) {
-//                ta.clear();
                 bt3.setText(changedToCapital ? "Uppercase" : "Lowercase");
                 changedToCapital = !changedToCapital;
                 Pattern pt = Pattern.compile("\\w+");
-                Matcher mt = pt.matcher(ta.getText());
+                Matcher mt = pt.matcher(defaultMessage);
                 int count = 0;
-                while (mt.find()) count++;
-                System.out.println(ta.getText());
-                System.out.println(mt.replaceAll(changedToCapital ? "$0" : "$0".toLowerCase()));
-                System.out.println(count);
+                int changedCount = 0;
+                StringBuffer sb = new StringBuffer();
+                while (mt.find()) {
+                    String match = mt.group();
+                    System.out.println(count + ": " + match);
+                    char first = changedToCapital ? match.toUpperCase().charAt(0) : match.toLowerCase().charAt(0);
+                    if (first != match.charAt(0)) changedCount++;
+                    String rest = match.substring(1);
+                    mt.appendReplacement(sb, first + rest);
+                    count++;
+                }
+                mt.appendTail(sb);
+                ta.clear();
+                ta.appendText(sb + "\n\n==============================\nTotal words: " + count + "\nChanged words: " + changedCount);
             }
         }
     }
