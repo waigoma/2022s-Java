@@ -192,6 +192,7 @@ public class ReadDrawCSVOption extends Application {
                 if (!isOpenFile || yScaleField.getText().equals("")) return;
                 String[] strs = defaultText.split("\n");
 
+                sourceList.clear();
                 for (String str : strs) sourceList.add(str.split(","));
                 maxX = Integer.parseInt(sourceList.get(sourceList.size() - 1)[0]);
                 maxY = Integer.parseInt(yScaleField.getText());
