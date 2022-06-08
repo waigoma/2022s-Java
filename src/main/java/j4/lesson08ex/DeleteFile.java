@@ -108,9 +108,11 @@ public class DeleteFile extends Application {
                     if(flr != null) {
                         lb.setText(" Delete File");
                         tf.setText(flr.getName());
-                        flr.delete();
-                        ta.appendText(flr.getName() + " has been deleted.");
-
+                        if (flr.delete()) {
+                            ta.appendText(flr.getName() + " has been deleted.");
+                        } else {
+                            ta.appendText("File not deleted");
+                        }
                     }
                 } catch(Exception ex) {
                     ex.printStackTrace();
