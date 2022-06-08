@@ -31,7 +31,7 @@ public class ChangeCase extends Application {
         launch(args);
     }
 
-    public void start(Stage stage)throws Exception {
+    public void start(Stage stage) throws Exception {
         //コントロールの作成
         lb = new Label(" File Name");
         bt1 = new Button("Read");

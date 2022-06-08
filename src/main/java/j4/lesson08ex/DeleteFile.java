@@ -15,8 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class DeleteFile extends Application
-{
+public class DeleteFile extends Application {
     private Label lb;
     private Button bt1, bt2, bt3;
     private TextField tf;
@@ -26,8 +25,7 @@ public class DeleteFile extends Application
     {
         launch(args);
     }
-    public void start(Stage stage)throws Exception
-    {
+    public void start(Stage stage) throws Exception {
         //コントロールの作成
         lb = new Label(" File Name");
         bt1 = new Button("Read");
@@ -68,17 +66,15 @@ public class DeleteFile extends Application
     }
 
     //イベントハンドラクラス
-    class ChooseEventHandler implements EventHandler<ActionEvent>
-    {
-        public void handle(ActionEvent e)
-        {
+    class ChooseEventHandler implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent e) {
             FileChooser fc = new FileChooser();
             fc.setInitialDirectory(new File("./MyfileEx"));
-            if (e.getSource() == bt1){
+            if (e.getSource() == bt1) {
                 try {
                     ta.clear();
                     File flr = fc.showOpenDialog(new Stage());
-                    if(flr != null){
+                    if(flr != null) {
                         lb.setText(" Open File");
                         tf.setText(flr.getName());
                         BufferedReader br = new BufferedReader(new FileReader(flr));
@@ -87,40 +83,36 @@ public class DeleteFile extends Application
                             ta.appendText(str+ "\n");
                         br.close();
                     }
-                }
-                catch(Exception ex){
+                } catch(Exception ex) {
                     ex.printStackTrace();
                 }
             }
-            else if (e.getSource() == bt2){
+            else if (e.getSource() == bt2) {
                 try {
                     File flw = fc.showSaveDialog(new Stage());
-                    if(flw != null){
+                    if(flw != null) {
                         lb.setText(" Save File");
                         tf.setText(flw.getName());
                         BufferedWriter bw = new BufferedWriter(new FileWriter(flw));
                         String str = ta.getText();
                         bw.write(str);
                         bw.close();
-                    }
-                    else lb.setText(" File name?");
-                }
-                catch(Exception ex){
+                    } else lb.setText(" File name?");
+                } catch(Exception ex) {
                     ex.printStackTrace();
                 }
-            } else if (e.getSource() == bt3){
+            } else if (e.getSource() == bt3) {
                 try {
                     ta.clear();
                     File flr = fc.showOpenDialog(new Stage());
-                    if(flr != null){
+                    if(flr != null) {
                         lb.setText(" Delete File");
                         tf.setText(flr.getName());
                         flr.delete();
                         ta.appendText(flr.getName() + " has been deleted.");
 
                     }
-                }
-                catch(Exception ex){
+                } catch(Exception ex) {
                     ex.printStackTrace();
                 }
             }
