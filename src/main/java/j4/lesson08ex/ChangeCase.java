@@ -67,7 +67,7 @@ public class ChangeCase extends Application {
         stage.setScene(sc);
 
         //ステージの表示
-        stage.setTitle("Choose File");
+        stage.setTitle("Change Case");
         stage.show();
     }
 
