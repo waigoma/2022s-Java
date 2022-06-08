@@ -15,7 +15,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.regex.Pattern;
 
 public class GenerateInfo extends Application {
     private final TextField nameField = new TextField();
@@ -149,6 +148,8 @@ public class GenerateInfo extends Application {
         try {
             FileChooser fc = new FileChooser();
             fc.setInitialDirectory(new File("./MyfileEx"));
+            FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("csv file", "*.csv");
+            fc.getExtensionFilters().add(extensionFilter);
             File flw = fc.showSaveDialog(new Stage());
             if (flw != null) {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(flw));
