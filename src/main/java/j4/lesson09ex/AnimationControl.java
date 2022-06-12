@@ -89,9 +89,10 @@ public class AnimationControl  extends Application {
         });
 
         button1.addEventHandler(ActionEvent.ACTION, e -> {
-            anim1[0] = new TranslateTransition(Duration.seconds(1), imgv);
-            anim1[0].setAutoReverse(true);
-            anim1[0].setCycleCount(TranslateTransition.INDEFINITE);
+//            anim1[0] = new TranslateTransition(Duration.seconds(1), imgv);
+//            anim1[0].setAutoReverse(true);
+//            anim1[0].setCycleCount(TranslateTransition.INDEFINITE);
+            anim1[0].stop();
             if (button1.getText().equals("Horizontal")) {
                 anim1[0].setFromY(-50);
                 anim1[0].setToY(50);
@@ -110,16 +111,14 @@ public class AnimationControl  extends Application {
 
         button2.addEventHandler(ActionEvent.ACTION,
                 e -> {
-                    //180 degrees per second
+                    anim2[0].stop();
                     if (button2.getText().equals("Slow")) {
-                        anim2[0] = new RotateTransition(Duration.seconds(2), rect);
+                        anim2[0].setDuration(Duration.seconds(2));
                         button2.setText("Fast");
                     } else {
-                        anim2[0] = new RotateTransition(Duration.seconds(.5), rect);
+                        anim2[0].setDuration(Duration.seconds(.5));
                         button2.setText("Slow");
                     }
-                    anim2[0].setInterpolator(Interpolator.LINEAR);
-                    anim2[0].setCycleCount(RotateTransition.INDEFINITE);
                     anim2[0].setByAngle(180); //180 degrees per second
                     anim2[0].play();
                 });
