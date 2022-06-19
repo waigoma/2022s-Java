@@ -5,8 +5,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class FileSendClient {
-    public static void main(String[] args) throws IOException
-    {
+    public static void main(String[] args) throws IOException {
         // Create a socket and connect to remote server
         //Socket socket = new Socket(addr, EchoServer.PORT);
         //InetAddress addr = InetAddress.getByName("localhost");
