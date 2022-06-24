@@ -67,15 +67,14 @@ public class FTPServer {
                             String line = scanner.nextLine();
                             s2c.println(">>: " + line);
                         }
-                        s2c.println(">>: EOF");
+                        s2c.println("EOF");
                         scanner.close();
                     } else if (clientCommand.equalsIgnoreCase("Text")) {
                         System.out.println(c2s.readLine());
                     }
                 }
             }
-        }
-        catch(Exception e){
+        } catch(Exception e) {
             e.printStackTrace();
         } finally {
             System.out.println("Server has closed ...");

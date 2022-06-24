@@ -108,13 +108,15 @@ public class FTPClient  extends Application {
                         ex.printStackTrace();
                     }
                 } else if (event.getSource().equals(downloadButton)) {
-                    pw.println("DwFile");
                     FileChooser fc = new FileChooser();
                     fc.setInitialDirectory(new File("./Myfile_server"));
                     try {
                         File file = fc.showOpenDialog(new Stage());
+                        pw.println("DwFile");
                         pw.println(file.getName() + "," + file.getAbsolutePath());
+
                         textArea.appendText("\n%% Downloading " + '"' + file.getName() + '"');
+                        textField.setText(file.getName());
                         while (true) {
                             String str = br.readLine();
                             if (str.equals("EOF")) {
