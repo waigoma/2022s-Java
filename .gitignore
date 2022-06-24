@@ -15,6 +15,7 @@ img/
 imgGame/
 MyfileEx/
 Myfile_client/
+Myfile_server/
 src/**/img/
 src/**/imgGame/
 src/**/test/
