@@ -24,9 +24,11 @@ public class ChatClient  extends Application implements Runnable {
     public int PORT = ChatServer.PORT;
     private Thread th;
 
-    private TextField tf;
-    private TextArea ta;
-    private Button bt1, bt2;
+    private TextArea textArea;
+    private final TextField chatField = new TextField("Text field");
+    private final TextField nameField = new TextField("YourName");
+    private final Button joinButton = new Button("Join");
+    private final Button leaveButton = new Button("Leave");
 
     private Socket sc;
     private BufferedReader br;
@@ -37,33 +39,32 @@ public class ChatClient  extends Application implements Runnable {
     }
 
     public void start(Stage stage) throws Exception {
-        ta = new TextArea();
-        ta.setEditable(false);
-        bt1 = new Button("Connect");
-        bt2 = new Button("Disonnect");
-        bt2.setDisable(true);
-        tf = new TextField("Text field");
-        tf.setPrefWidth(200);
+        textArea = new TextArea();
+        textArea.setEditable(false);
+
+        chatField.setPrefWidth(200);
+        nameField.setPrefWidth(75);
+
+        leaveButton.setDisable(true);
 
         HBox hb = new HBox();
-        hb.getChildren().add(bt1);
-        hb.getChildren().add(tf);
-        hb.getChildren().add(bt2);
+        hb.getChildren().addAll(chatField, nameField, joinButton, leaveButton);
         hb.setSpacing(5);
         hb.setPadding(new Insets(5, 0, 0, 3));
 
-        BorderPane bp = new BorderPane();
-        bp.setPadding(new Insets(5, 5, 5, 5));
+        BorderPane root = new BorderPane();
+        root.setPadding(new Insets(5, 5, 5, 5));
 
-        bp.setCenter(ta);
-        bp.setBottom(hb);
+        root.setCenter(textArea);
+        root.setBottom(hb);
 
-        bt1.setOnAction(new ConnectEventHandler());
-        bt2.setOnAction(new DisconnectEventHandler());
-        tf.setOnAction(new MsgEventHandler());
+        joinButton.setOnAction(new ConnectEventHandler());
+        leaveButton.setOnAction(new DisconnectEventHandler());
+        chatField.setOnAction(new MsgEventHandler());
+
         th = new Thread(this);
 
-        Scene sc = new Scene(bp, 400, 400);
+        Scene sc = new Scene(root, 400, 400);
         stage.setScene(sc);
         stage.setTitle("ThreadClient");
         stage.show();
@@ -74,17 +75,19 @@ public class ChatClient  extends Application implements Runnable {
         th = new Thread(this);
     }
 
+    @Override
     public void run() {
         try {
             sc = new Socket(HOST, PORT);
-            ta.appendText("Connect to server ("+HOST+":"+PORT+")\n");
+            textArea.appendText("$$Connect to server ("+HOST+":"+PORT+")\n");
             br = new BufferedReader(new InputStreamReader(sc.getInputStream()));
             pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sc.getOutputStream())), true);
+            pw.println(nameField.getText());
 
             while (true) {
                 try {
                     String str = br.readLine();
-                    ta.appendText(str + "\n");
+                    textArea.appendText(str + "\n");
                 } catch(Exception e) {
                     br.close();
                     pw.close();
@@ -105,15 +108,15 @@ public class ChatClient  extends Application implements Runnable {
                 createThread();
                 th.start();
             }
-            bt1.setDisable(true);
-            bt2.setDisable(false);
+            joinButton.setDisable(true);
+            leaveButton.setDisable(false);
         }
     }
 
     class DisconnectEventHandler implements EventHandler<ActionEvent> {
         public void handle(ActionEvent e) {
-            tf.setText("Text");
-            pw.println("Disconnect");
+            chatField.setText("Text");
+            pw.println("");
 
             try {
                 br.close();
@@ -122,8 +125,8 @@ public class ChatClient  extends Application implements Runnable {
             } catch(Exception ex) {
                 ex.printStackTrace();
             }
-            bt1.setDisable(false);
-            bt2.setDisable(true);
+            joinButton.setDisable(false);
+            leaveButton.setDisable(true);
         }
     }
 
@@ -131,13 +134,15 @@ public class ChatClient  extends Application implements Runnable {
         public void handle(ActionEvent e) {
             if (th.isAlive()) {
                 try {
-                    String str = tf.getText();
+                    String str = chatField.getText();
                     pw.println(str);
-                    tf.setText("");
+                    chatField.setText("");
                 } catch(Exception ex) {
                     ex.printStackTrace();
                 }
-            } else ta.appendText("Not connect to server! Click <Connect>\n");
+            } else {
+                textArea.appendText("Not connect to server! Click <Connect>\n");
+            }
         }
     }
 }
