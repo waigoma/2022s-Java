@@ -1,6 +1,5 @@
 package j4.lesson12ex;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +19,8 @@ public class Greeting extends HttpServlet {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         int hour = date.getHours();
         String time = format.format(date);
-        String greeting = "";
-        String imgSource = "";
+        String greeting;
+        String imgSource;
 
         if (5 < hour && hour < 12) {
             greeting = "Good morning";
