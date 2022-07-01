@@ -16,10 +16,9 @@ imgGame/
 MyfileEx/
 Myfile_client/
 Myfile_server/
-src/**/img/
-src/**/imgGame/
+WebContent/
+
 src/**/test/
-src/**/MyfileEx/
 
 *.png
 *.jpg
