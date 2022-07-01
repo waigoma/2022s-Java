@@ -17,6 +17,7 @@ MyfileEx/
 Myfile_client/
 Myfile_server/
 WebContent/
+lib/
 
 src/**/test/
 
