@@ -28,26 +28,32 @@ public class Register_web extends HttpServlet {
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
         String gender = request.getParameter("gender");
-        String hobby = request.getParameter("hobby");
+        String sports = request.getParameter("sports");
+        sports = sports != null ? "sports " : "";
+        String music = request.getParameter("music");
+        music = music != null ? "music " : "";
+        String game = request.getParameter("game");
+        game = game != null ? "game " : "";
 
         String res = "";
         boolean isError = false;
 
         if (isNumeric(username)) {
-            res += "User Name can't be numeric\n";
+            res += "<strong>User Name can't be numeric</strong><br>";
             isError = true;
         }
-        if (isSame(password, confirm)) {
-            res += "Password don't match!\n";
+        if (!isSame(password, confirm)) {
+            res += "<strong>Password don't match!</strong><br>";
             isError = true;
         }
 
         if (!isError) {
-            res = "Register Succeed!\n\n";
-            res += "Name: " + username + "\n";
-            res += "Email: " + email + "\n";
-            res += "Gender: " + gender + "\n";
-            res += "Tel: " + tel + "\n";
+            res = "<strong>Register Succeed!</strong><br>";
+            res += "<strong>Name: " + username + "</strong><br>";
+            res += "<strong>Email: " + email + "</strong><br>";
+            res += "<strong>Gender: " + gender + "</strong><br>";
+            res += "<strong>Tel: " + tel + "</strong><br>";
+            res += "<strong>Hobby: " + sports + music + game + "</strong><br>";
         }
 
         String html =
@@ -58,7 +64,7 @@ public class Register_web extends HttpServlet {
                 "</head>" +
                 "<body>" +
                     "<h1>Register Result</h1>" +
-                    "<h2>" + res + "</h2>" +
+                    res +
                 "</body>" +
                 "</html>";
 
