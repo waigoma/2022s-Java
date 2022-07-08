@@ -16,10 +16,12 @@ imgGame/
 MyfileEx/
 Myfile_client/
 Myfile_server/
-WebContent/
+WebContent/lesson12*/
 lib/
 
 src/**/test/
 
+WebContent/index.jsp
+WebContent/WEB-INF/web.xml
 *.png
 *.jpg
