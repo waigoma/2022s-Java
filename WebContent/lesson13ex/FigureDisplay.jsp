@@ -1,5 +1,11 @@
 <%@ page import="java.util.Date" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%!
+    int pict1 = 0;
+    int pict2 = 0;
+    int pict3 = 0;
+    String mostPict = "sakura1.jpg";
+%>
 <html>
 <head>
     <title>Title</title>
