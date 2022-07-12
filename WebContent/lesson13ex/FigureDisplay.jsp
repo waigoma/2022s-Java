@@ -8,7 +8,7 @@
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>FigureDisplay</title>
 </head>
 <body>
     <h4>Session started at
